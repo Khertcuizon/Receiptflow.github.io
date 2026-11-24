@@ -1,26 +1,34 @@
+
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath, URL } from 'node:url';
 
-// `npm run dev:mock` swaps the Supabase client for an in-memory sandbox so the
-// whole UI (including a simulated OCR scan) can be explored without a backend.
-// Production builds never use it.
+// npm run dev:mock swaps the Supabase client for an in-memory sandbox.
 const useMock = process.env.RECEIPTFLOW_MOCK === '1';
 
 export default defineConfig({
+  // GitHub Pages repository path
+  base: '/Receiptflow.github.io/',
+
   plugins: [react(), tailwindcss()],
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       ...(useMock
         ? {
-            '@supabase/supabase-js': fileURLToPath(new URL('./tests/mocks/supabase-js.ts', import.meta.url)),
-            'tesseract.js': fileURLToPath(new URL('./tests/mocks/tesseract.ts', import.meta.url)),
+            '@supabase/supabase-js': fileURLToPath(
+              new URL('./tests/mocks/supabase-js.ts', import.meta.url)
+            ),
+            'tesseract.js': fileURLToPath(
+              new URL('./tests/mocks/tesseract.ts', import.meta.url)
+            ),
           }
         : {}),
     },
   },
+
   build: {
     chunkSizeWarningLimit: 700,
     rollupOptions: {
@@ -33,15 +41,20 @@ export default defineConfig({
       },
     },
   },
+
   test: {
     alias: {
-      '@supabase/supabase-js': fileURLToPath(new URL('./tests/mocks/supabase-js.ts', import.meta.url)),
-      'tesseract.js': fileURLToPath(new URL('./tests/mocks/tesseract.ts', import.meta.url)),
+      '@supabase/supabase-js': fileURLToPath(
+        new URL('./tests/mocks/supabase-js.ts', import.meta.url)
+      ),
+      'tesseract.js': fileURLToPath(
+        new URL('./tests/mocks/tesseract.ts', import.meta.url)
+      ),
     },
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./tests/setup.ts'],
-    include: ['tests/**/*.test.{ts,tsx}'],
+    include: ['tests/**/*.{ts,tsx}'],
     css: false,
   },
 });
