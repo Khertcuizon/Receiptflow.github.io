@@ -56,6 +56,21 @@ everything offline: Create account → Log in → seeded sample data. State live
 `npm run build` and host `dist/` anywhere that can rewrite unknown paths to `index.html`. Config is included for
 Netlify (`public/_redirects`) and Vercel (`vercel.json`). Set the two `VITE_SUPABASE_*` variables in the host.
 
+### GitHub Pages (this repository)
+
+This repo includes [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml), which builds the app from
+`receiptflow/` with `GITHUB_PAGES=true` and deploys `receiptflow/dist` to GitHub Pages on pushes to `main` (or via
+**Actions → Deploy to GitHub Pages → Run workflow**).
+
+1. In **GitHub → Settings → Pages**, set **Source** to **GitHub Actions**.
+2. Wait for the workflow to succeed; the site will be served at
+   `https://khertcuizon.github.io/Receiptflow.github.io/`.
+3. In **Supabase → Authentication → URL Configuration**, add the deployed redirect URLs:
+   - `https://khertcuizon.github.io/Receiptflow.github.io/login`
+   - `https://khertcuizon.github.io/Receiptflow.github.io/register`
+   and include the same origin in allowed URLs as needed for your Supabase project. The workflow copies
+   `index.html` to `404.html` for SPA route refreshes on GitHub Pages.
+
 ## What's in the app
 
 Landing · Login / Register (Gmail + Google only, same rules as before) · Dashboard · Scan Receipt · Receipts ·
