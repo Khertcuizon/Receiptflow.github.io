@@ -1,0 +1,44 @@
+{
+  "name": "receiptflow",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "ReceiptFlow \u2014 receipt scanning and expense tracking on Supabase, built with React, Vite and Tailwind CSS.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev:mock": "RECEIPTFLOW_MOCK=1 vite --port 5174",
+    "build:mock": "RECEIPTFLOW_MOCK=1 tsc -b && RECEIPTFLOW_MOCK=1 vite build --outDir dist-mock"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@supabase/supabase-js": "^2.119.2",
+    "chart.js": "^4.6.1",
+    "lucide-react": "^1.77.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router": "^7.18.6",
+    "tesseract.js": "^6.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.13",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "5.9",
+    "vite": "^7.3.8",
+    "vitest": "^5.1.1"
+  }
+}

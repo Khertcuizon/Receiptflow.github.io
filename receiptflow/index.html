@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Track receipts, expenses, budgets, and spending reports with ReceiptFlow." />
+    <meta name="theme-color" content="#ecf8f1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>ReceiptFlow | Receipt and Expense Tracker</title>
+    <script>
+      // Apply the saved theme before first paint so there is no light/dark flash.
+      (function () {
+        try {
+          var theme = JSON.parse(localStorage.getItem('receiptflow:theme') || 'null');
+          var mode = (theme && theme.mode) || 'system';
+          var dark = mode === 'dark' || (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var root = document.documentElement;
+          root.classList.toggle('dark', dark);
+          root.style.colorScheme = dark ? 'dark' : 'light';
+          var vars = JSON.parse(localStorage.getItem('receiptflow:theme-vars') || 'null');
+          var set = vars && vars[dark ? 'dark' : 'light'];
+          if (set) for (var key in set) root.style.setProperty(key, set[key]);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>ReceiptFlow needs JavaScript to run.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

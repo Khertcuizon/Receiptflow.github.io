@@ -1,0 +1,9 @@
+{
+  "name": "receiptflow-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix receiptflow run dev -- --host 127.0.0.1",
+    "build": "npm --prefix receiptflow run build",
+    "test": "npm --prefix receiptflow test"
+  }
+}
