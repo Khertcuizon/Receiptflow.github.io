@@ -64,11 +64,13 @@ function LegacyRedirect() {
 }
 
 export default function App() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
   return (
     <ThemeProvider>
       <ToastProvider>
         <ConfirmProvider>
-          <BrowserRouter>
+          <BrowserRouter basename={basename}>
             <AuthProvider>
               <AppRoutes />
             </AuthProvider>

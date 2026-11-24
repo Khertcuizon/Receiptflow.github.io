@@ -7,9 +7,10 @@ import { fileURLToPath, URL } from 'node:url';
 // npm run dev:mock swaps the Supabase client for an in-memory sandbox.
 const useMock = process.env.RECEIPTFLOW_MOCK === '1';
 
-export default defineConfig({
-  // GitHub Pages repository path
-  base: '/Receiptflow.github.io/',
+export default defineConfig(({ command }) => ({
+  // Default to "/" so local dev, preview, and root-hosted deploys work.
+  // Set GITHUB_PAGES=true when building for https://<user>.github.io/Receiptflow.github.io/.
+  base: process.env.GITHUB_PAGES === 'true' ? '/Receiptflow.github.io/' : '/',
 
   plugins: [react(), tailwindcss()],
 
@@ -57,4 +58,4 @@ export default defineConfig({
     include: ['tests/**/*.{ts,tsx}'],
     css: false,
   },
-});
+}));
