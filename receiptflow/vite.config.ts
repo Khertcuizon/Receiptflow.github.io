@@ -7,12 +7,23 @@ import { fileURLToPath, URL } from 'node:url';
 // npm run dev:mock swaps the Supabase client for an in-memory sandbox.
 const useMock = process.env.RECEIPTFLOW_MOCK === '1';
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(() => ({
   // Default to "/" so local dev, preview, and root-hosted deploys work.
   // Set GITHUB_PAGES=true when building for https://<user>.github.io/Receiptflow.github.io/.
   base: process.env.GITHUB_PAGES === 'true' ? '/Receiptflow.github.io/' : '/',
 
   plugins: [react(), tailwindcss()],
+
+  server: {
+    host: '127.0.0.1',
+    port: 3000,
+    strictPort: true,
+  },
+  preview: {
+    host: '127.0.0.1',
+    port: 3000,
+    strictPort: true,
+  },
 
   resolve: {
     alias: {

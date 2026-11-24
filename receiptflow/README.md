@@ -8,7 +8,7 @@ Scan receipts, track expenses, set budgets and review reports. This is the React
 
 ```bash
 npm install
-npm run dev          # http://localhost:5173  (uses .env -> your Supabase project)
+npm run dev          # http://localhost:3000  (uses .env -> your Supabase project)
 ```
 
 `.env` is already filled in with the project URL and publishable key from the original `js/config.js`
@@ -21,8 +21,8 @@ Google sign-in returns to the page that started it. The old site used `login.htm
 routes are clean URLs. In **Supabase → Authentication → URL Configuration → Redirect URLs** add:
 
 ```
-http://localhost:5173/login
-http://localhost:5173/register
+http://localhost:3000/login
+http://localhost:3000/register
 https://YOUR-DEPLOYED-SITE/login
 https://YOUR-DEPLOYED-SITE/register
 ```
